@@ -3,11 +3,11 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user] = useState({
+const [user] = useState({
     isAuthenticated: true,
-    role: "Fleet Manager",
     name: "John Doe",
-  });
+    role: "Fleet Manager",
+});
 
   const login = () => {};
 
