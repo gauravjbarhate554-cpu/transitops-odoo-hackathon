@@ -4,16 +4,13 @@ import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 
 const initialState = {
-  source: "",
-  destination: "",
   vehicle: "",
-  driver: "",
-  cargoWeight: "",
-  distance: "",
-  revenue: "",
+  issue: "",
+  cost: "",
+  status: "Draft",
 };
 
-export default function TripForm({
+export default function MaintenanceForm({
   initialData,
   onSubmit,
   loading = false,
@@ -42,9 +39,7 @@ export default function TripForm({
 
     onSubmit({
       ...formData,
-      cargoWeight: Number(formData.cargoWeight),
-      distance: Number(formData.distance),
-      revenue: Number(formData.revenue),
+      cost: Number(formData.cost),
     });
   }
 
@@ -54,60 +49,48 @@ export default function TripForm({
       className="space-y-4"
     >
       <Input
-        label="Source"
-        name="source"
-        value={formData.source}
-        onChange={handleChange}
-        required
-      />
-
-      <Input
-        label="Destination"
-        name="destination"
-        value={formData.destination}
-        onChange={handleChange}
-        required
-      />
-
-      <Input
         label="Vehicle"
         name="vehicle"
         value={formData.vehicle}
         onChange={handleChange}
         placeholder="MH12AB1234"
+        required
       />
 
       <Input
-        label="Driver"
-        name="driver"
-        value={formData.driver}
+        label="Issue"
+        name="issue"
+        value={formData.issue}
         onChange={handleChange}
-        placeholder="John Doe"
+        placeholder="Engine Oil Change"
+        required
       />
 
       <Input
-        label="Cargo Weight (kg)"
-        name="cargoWeight"
+        label="Cost (₹)"
+        name="cost"
         type="number"
-        value={formData.cargoWeight}
+        value={formData.cost}
         onChange={handleChange}
+        required
       />
 
-      <Input
-        label="Distance (km)"
-        name="distance"
-        type="number"
-        value={formData.distance}
-        onChange={handleChange}
-      />
+      <div className="space-y-1">
+        <label className="text-sm font-medium text-slate-700">
+          Status
+        </label>
 
-      <Input
-        label="Revenue (₹)"
-        name="revenue"
-        type="number"
-        value={formData.revenue}
-        onChange={handleChange}
-      />
+        <select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+        >
+          <option>Draft</option>
+          <option>In Shop</option>
+          <option>Completed</option>
+        </select>
+      </div>
 
       <Button
         type="submit"
@@ -115,8 +98,8 @@ export default function TripForm({
         fullWidth
       >
         {initialData
-          ? "Update Trip"
-          : "Create Trip"}
+          ? "Update Record"
+          : "Add Record"}
       </Button>
     </form>
   );

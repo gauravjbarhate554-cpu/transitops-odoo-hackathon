@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "../pages/Login/Login";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import Vehicles from "../pages/Vehicles/Vehicle";
-import Drivers from "../pages/Drivers/Driver";
-import Trips from "../pages/Trips/Trip";
-import Maintenance from "../pages/Maintenance/Maintenace";
-import Fuel from "../pages/Fuel/Fuel";
-import Expenses from "../pages/Expenses/Expense";
-import Reports from "../pages/Reports/Report";
+import Login from "../pages/Login";
+import Dashboard from "../pages/Dashboard";
+import Vehicles from "../pages/Vehicles";
+import Drivers from "../pages/Drivers";
+import Trips from "../pages/Trips";
+import Maintenance from "../pages/Maintenance";
+import Fuel from "../pages/Fuel";
+import Expenses from "../pages/Expenses";
+import Reports from "../pages/Reports";
 
 import AppShell from "../layouts/AppShell";
 import ProtectedRoute from "./ProtectedRoute";
