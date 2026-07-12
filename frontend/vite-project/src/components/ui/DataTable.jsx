@@ -5,6 +5,8 @@ export default function DataTable({
   data = [],
   emptyTitle = "No Data Found",
   emptyDescription = "There are no records to display.",
+  className = "",
+  onRowClick,
 }) {
   if (!data.length) {
     return (
@@ -14,9 +16,20 @@ export default function DataTable({
       />
     );
   }
-
+// if(loading)
+//     return <Spinner/>
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div
+      className={`
+        overflow-hidden
+        rounded-xl
+        border
+        border-slate-200
+        bg-white
+        shadow-sm
+        ${className}
+      `}
+    >
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead className="bg-slate-50">
@@ -36,7 +49,14 @@ export default function DataTable({
             {data.map((row, rowIndex) => (
               <tr
                 key={row.id ?? rowIndex}
-                className="border-t border-slate-100 transition hover:bg-slate-50"
+                onClick={() => onRowClick?.(row)}
+                className={`
+                  border-t
+                  border-slate-100
+                  transition
+                  hover:bg-slate-50
+                  ${onRowClick ? "cursor-pointer" : ""}
+                `}
               >
                 {columns.map((column) => (
                   <td

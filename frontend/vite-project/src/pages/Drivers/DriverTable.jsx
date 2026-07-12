@@ -1,43 +1,48 @@
-import {
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 import DataTable from "../../components/ui/DataTable";
 import StatusBadge from "../../components/ui/StatusBadge";
 
-export default function VehicleTable({
-  vehicles,
+export default function DriverTable({
+  drivers,
   onEdit,
   onDelete,
 }) {
   const columns = [
     {
-      header: "Registration",
-      accessor: "registration",
+      header: "Driver",
+      accessor: "name",
     },
     {
-      header: "Model",
-      accessor: "model",
+      header: "License",
+      accessor: "license",
     },
     {
-      header: "Capacity (kg)",
-      accessor: "capacity",
+      header: "Category",
+      accessor: "category",
+    },
+    {
+      header: "Safety",
+      render: (driver) => (
+        <span className="font-medium">
+          {driver.safety}%
+        </span>
+      ),
     },
     {
       header: "Status",
-      render: (vehicle) => (
-        <StatusBadge status={vehicle.status} />
+      render: (driver) => (
+        <StatusBadge status={driver.status} />
       ),
     },
     {
       header: "Actions",
-      render: (vehicle) => (
+      render: (driver) => (
         <div className="flex items-center gap-2">
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onEdit(vehicle);
+              onEdit(driver);
             }}
             className="rounded-md p-2 text-blue-600 transition hover:bg-blue-50"
           >
@@ -47,7 +52,7 @@ export default function VehicleTable({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onDelete(vehicle);
+              onDelete(driver);
             }}
             className="rounded-md p-2 text-red-600 transition hover:bg-red-50"
           >
@@ -61,9 +66,9 @@ export default function VehicleTable({
   return (
     <DataTable
       columns={columns}
-      data={vehicles}
-      emptyTitle="No Vehicles"
-      emptyDescription="No vehicles have been added yet."
+      data={drivers}
+      emptyTitle="No Drivers"
+      emptyDescription="No drivers have been added yet."
     />
   );
 }
